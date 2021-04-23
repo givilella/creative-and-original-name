@@ -1,0 +1,44 @@
+<div class="btn-group dropdown with-arrow" role="group">
+  <button
+    class="btn btn-square"
+    data-toggle="dropdown"
+    type="button"
+    id="dropdown-toggle-btn-1"
+    aria-haspopup="true"
+    aria-expanded="false"
+    [disabled]="!(notifications.length > 0)"
+  >
+    <i class="fas fa-bell"></i>
+    <span
+      class="sup badge badge-secondary badge-pill"
+      *ngIf="notifications.length > 0"
+      >{{ notifications.length }}</span
+    >
+  </button>
+  <div
+    class="dropdown-menu dropdown-menu-right"
+    aria-labelledby="dropdown-toggle-btn-1"
+  >
+    <div *ngFor="let notification of notifications">
+      <div class="dropdown-item">
+        <div class="dropdown-content">
+          <h6 class="dropdown-item-title">{{ notification.title }}</h6>
+          <a
+            href="{{ notification.action }}"
+            target="_blank"
+            class="text-wrap"
+            *ngIf="notification.type === 'inventory'"
+            >{{ notification.desc }}</a
+          >
+          <a
+            routerLink="{{ notification.action }}"
+            class="text-wrap"
+            *ngIf="notification.type === 'size'"
+            >{{ notification.desc }}</a
+          >
+        </div>
+        <div class="dropdown-divider"></div>
+      </div>
+    </div>
+  </div>
+</div>

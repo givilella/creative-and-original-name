@@ -1,0 +1,11 @@
+<div
+  class="d-flex justify-content-center"
+  *ngIf="loadingService.isLoading$ | async"
+>
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="row row-eq-spacing-lg">
+  <div class="col-lg-9">
+    <div class="content">
+      <h1 class="content-title">Your daily usage</h1>
+
+      <div
+        class="btn-group"
+        role="group"
+        aria-label="Button group with nested dropdown"
+      >
+        <div class="btn-group dropdown with-arrow" role="group">
+          <button
+            class="btn"
+            data-toggle="dropdown"
+            type="button"
+            id="dropdown-toggle-btn-1"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Sort by
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdown-toggle-btn-1">
+            <a
+              href="#"
+              class="dropdown-item"
+              (click)="sortDisplayItems('Product')"
+              >Name</a
+            >
+            <a
+              href="#"
+              class="dropdown-item"
+              (click)="sortDisplayItems('usage')"
+              >Usage</a
+            >
+            <a href="#" class="dropdown-item" (click)="sortDisplayItems('qty')"
+              >Quantity</a
+            >
+          </div>
+        </div>
+      </div>
+      <form>
+        <div class="form-group">
+          <div class="custom-radio d-inline-block mr-10 mt-10">
+            <input
+              type="radio"
+              name="sortDirection"
+              id="radio-3"
+              value="asc"
+              [ngModel]="sortDirection"
+              (change)="selectOrder($event)"
+            />
+            <label for="radio-3">Asc</label>
+          </div>
+          <div class="custom-radio d-inline-block">
+            <input
+              type="radio"
+              name="sortDirection"
+              id="radio-4"
+              value="desc"
+              [ngModel]="sortDirection"
+              (change)="selectOrder($event)"
+            />
+            <label for="radio-4">Desc</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="card" *ngFor="let item of displayItems">
+      <h2 class="card-title">{{ item.Product }}</h2>
+      <div class="row">
+        <div class="col-6">
+          <img
+            src="assets/{{ item.guid }}.jpg"
+            class="img-fluid"
+            alt="{{ item.brand }} | {{ item.Product }}"
+          />
+        </div>
+      </div>
+      <div class="fake-content mb-10">
+        <span class="badge badge-primary">Usage: {{ item.usage }}</span>
+      </div>
+      <div class="fake-content mb-10">
+        <span class="badge" [ngClass]="setBadgeColor(item)">
+          Amount left: {{ item.qty }}
+        </span>
+      </div>
+      <div class="fake-content mb-10">
+        <span>
+          You have {{ item.daysLeft }} days left of this product.
+          <a
+            href="{{ item.order_url }}"
+            target="_blank"
+            *ngIf="item.daysLeft < 10 && item.daysLeft >= 7"
+            >Click here to order more...</a
+          >
+          <a
+            href="{{ item.order_url }}"
+            target="_blank"
+            *ngIf="item.daysLeft < 7"
+          >
+            Order now and avoid running out of this product!
+          </a>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

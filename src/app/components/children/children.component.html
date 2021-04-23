@@ -1,0 +1,52 @@
+<div *ngIf="child; else notFound">
+  <div class="row row-eq-spacing-lg">
+    <div class="col-lg-9">
+      <div class="content">
+        <h1 class="content-title"></h1>
+        <div class="fake-content"></div>
+        <div class="fake-content"></div>
+      </div>
+      <div class="card">
+        <h2 class="card-title">
+          {{ child.first_name || child.title }} {{ child.last_name }}
+        </h2>
+
+        <div class="card-body">
+          <div class="row">
+            <div class="col-6">
+              <img
+                src="{{ child.image }}"
+                class="img-fluid"
+                alt="Photo of {{ child.first_name }}"
+              />
+            </div>
+          </div>
+          <div class="fake-content mb-10">
+            Birth Date: {{ formatDate(child.birthdate) }}
+          </div>
+          <div class="fake-content mb-10">
+            Next Size Date: {{ formatDate(child.next_size_date) }}
+          </div>
+          <div class="fake-content">
+            <h6>Products used: (Click to order)</h6>
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let product of productsUsed">
+                <a href="{{ product.order_url }}" target="_blank">{{
+                  product.Product
+                }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fake-content w-100"></div>
+      </div>
+      <div class="content">
+        <div class="fake-content"></div>
+        <div class="fake-content w-150"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #notFound> Child not found... </ng-template>

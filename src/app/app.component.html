@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <title>Document</title>
+  </head>
+  <body
+    class="dark-mode with-custom-webkit-scrollbars with-custom-css-scrollbars"
+    data-dm-shortcut-enabled="true"
+    data-sidebar-shortcut-enabled="true"
+  >
+    <!-- Page wrapper start -->
+    <div
+      id="page-wrapper"
+      class="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom with-transitions"
+      data-sidebar-type="overlayed-all"
+    >
+      <!-- Sticky alerts -->
+      <div class="sticky-alerts"></div>
+
+      <app-navbar></app-navbar>
+
+      <app-loading></app-loading>
+      <!-- Sidebar overlay -->
+      <div class="sidebar-overlay" onclick="halfmoon.toggleSidebar()"></div>
+
+      <!-- Sidebar start -->
+      <div class="sidebar">
+        <div class="sidebar-menu">
+          <div class="sidebar-content"></div>
+          <h5 class="sidebar-title">Menu</h5>
+          <div class="sidebar-divider"></div>
+          <a
+            routerLink="/"
+            class="sidebar-link sidebar-link-with-icon active"
+            onclick="halfmoon.toggleSidebar()"
+          >
+            <span class="sidebar-icon">
+              <i class="fas fa-toilet-paper" aria-hidden="true"></i>
+            </span>
+            Daily Usage
+          </a>
+
+          <br />
+          <h5 class="sidebar-title">Children</h5>
+          <div class="sidebar-divider"></div>
+          <a
+            routerLink="/children/{{ child.id }}"
+            class="sidebar-link sidebar-link-with-icon"
+            *ngFor="let child of children"
+            onclick="halfmoon.toggleSidebar()"
+          >
+            <span class="sidebar-icon">
+              <i class="fas fa-baby" aria-hidden="true"></i>
+            </span>
+            {{ child.first_name || child.title }}
+          </a>
+        </div>
+      </div>
+      <!-- Sidebar end -->
+
+      <!-- Content wrapper start -->
+      <div class="content-wrapper">
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <!-- Content wrapper end -->
+
+      <!-- Navbar fixed bottom start -->
+      <nav class="navbar navbar-fixed-bottom">
+        <span class="navbar-text ml-auto mr-auto">
+          © Copyright 2021, Creative & Original Name
+        </span>
+      </nav>
+      <!-- Navbar fixed bottom end -->
+    </div>
+    <!-- Page wrapper end -->
+  </body>
+  F
+</html>
